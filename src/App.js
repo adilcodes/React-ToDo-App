@@ -23,6 +23,14 @@ function App() {
     setAllTodos(filteredItems);
   };
 
+  const updateTodo = (id) => {
+    const filteredItem = allTodos.filter((todoItem, index) => {
+      return index == id;
+    });
+    setTodo(filteredItem);
+    deleteTodo(id);
+  }
+
   return (
     <div className="container-fluid">
       <div className="row">
@@ -41,7 +49,7 @@ function App() {
           <ul className='list-group'>
             {
               allTodos.map((todoItem, index) => {
-                return <Todos todoItem={todoItem} key={index} id={index} deleteTodo={deleteTodo}/>
+                return <Todos todoItem={todoItem} key={index} id={index} deleteTodo={deleteTodo} updateTodo={updateTodo}/>;
               })
             }
           </ul>
