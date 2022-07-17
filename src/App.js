@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Todos from './components/Todos';
 
 function App() {
   const [todo, setTodo] = useState("");
@@ -33,12 +34,7 @@ function App() {
           <ul className='list-group'>
             {
               allTodos.map((todoItem, index) => {
-                return (
-                  <div key={index} className="d-flex justify-content-between align-items-center my-2">
-                    <li className='list-group-item border-0 fs-5 text-capitalize'>{todoItem}</li> 
-                    <button className="btn btn-danger px-3"><i className="fa-solid fa-trash"></i></button>
-                  </div> 
-                )
+                return <Todos todoItem={todoItem} key={index}/>
               })
             }
           </ul>
