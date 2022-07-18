@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Todos from './components/Todos';
 
 function App() {
+
+  const dataFromLocalStorage = JSON.parse(localStorage.getItem('Tasks'));
+  
   const [todo, setTodo] = useState("");
-  const [allTodos, setAllTodos] = useState([]); 
+  const [allTodos, setAllTodos] = useState(dataFromLocalStorage); 
 
   const inputTodo = (event) => {
     setTodo(event.target.value);
@@ -31,6 +34,11 @@ function App() {
     deleteTodo(id);
   }
 
+  useEffect(() => {
+    localStorage.setItem('Tasks', JSON.stringify(allTodos))
+  }, [allTodos]);
+
+  
   return (
     <div className="container-fluid">
       <div className="row">
